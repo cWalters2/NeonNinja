@@ -1,0 +1,26 @@
+<ATTACK:SC>
+time 0.3 burst 2
+time 0.7 burst 2
+</ATTACK>
+<ATTACK:NAIR>
+time 0.3 airbrake 0.9 0.9
+</ATTACK>
+<UNIQUE:SPB_L>
+time 0.1 airburst 0 3
+</UNIQUE>
+<UNIQUE:SPB_M>
+time 0.1 airburst 0.6 5
+</UNIQUE>
+<UNIQUE:SPB_H>
+time 0.1 airburst 1 6
+</UNIQUE>
+<UNIQUE:SPC_L>
+time 0.4 slide 1.5
+</UNIQUE>
+<UNIQUE:SPC_M>
+time 0.6 slide 2
+</UNIQUE>
+<UNIQUE:SPC_H>
+time 0.01 burst 3
+time 0.9 slide 2.5
+</UNIQUE>

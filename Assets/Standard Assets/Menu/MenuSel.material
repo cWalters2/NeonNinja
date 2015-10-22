@@ -1,0 +1,16 @@
+material MenuSel
+{
+   technique
+   {
+     pass
+     {
+       scene_blend modulate
+       depth_write off
+       texture_unit
+       {
+         colour_op_ex source1 src_manual src_current 1 1 0.1
+         alpha_op_ex source1 src_manual src_current 0.5
+       }
+     }
+   }
+ }

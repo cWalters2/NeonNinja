@@ -1,0 +1,2 @@
+scSpeed=1.3
+sbSpeed=1

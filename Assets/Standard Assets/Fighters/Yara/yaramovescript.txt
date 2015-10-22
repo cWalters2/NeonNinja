@@ -1,0 +1,15 @@
+<ATTACK:SC>
+time 0.9 slide 1.5
+</ATTACK>
+<ATTACK:NC>
+time 0.9 slide 1.5
+</ATTACK>
+<ATTACK:SB>
+time 0.4 burst 4
+</ATTACK>
+<ATTACK:SPA>
+time 0.2 burst 5
+</ATTACK>
+<ATTACK:SPC>
+time 0.9 slide 3
+</ATTACK>

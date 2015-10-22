@@ -1,0 +1,4 @@
+demoplr1=Yara
+p1dmg=100
+demoplr2=Kiroch
+p2dmg=60

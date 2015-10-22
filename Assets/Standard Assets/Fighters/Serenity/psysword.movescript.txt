@@ -1,0 +1,6 @@
+<ATTACK:NB>
+time 0.1 airburst 5 0
+</ATTACK>
+<ATTACK:SB>
+time 0.4 airburst 4 2
+</ATTACK>

@@ -1,0 +1,13 @@
+<ATTACK:SC>
+time 0.9 slide 1.5
+</ATTACK>
+<ATTACK:SB>
+time 0.4 burst 4
+</ATTACK>
+<ATTACK:SPB>
+time 0.4 airhover 0 1
+time 0.4 airburst 0 1
+time 0.5 airburst 0 1
+time 0.6 airburst 0 1
+time 0.7 airbutst 0 1
+</ATTACK>

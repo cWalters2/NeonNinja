@@ -1,0 +1,14 @@
+walk.loopstart=0
+walk.vel=0.02
+walk.maxspeed=0.6
+walk.shuffletime=0.6
+pivot.time=0.125
+jump.delay=0.08
+jump.vel=1.8
+land.time=1.0
+dodge.time=1.0
+size.y=2
+size.x=1
+defence=50
+grav=0.08
+fric=0.09
