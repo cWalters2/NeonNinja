@@ -88,6 +88,7 @@ ModelImporter:
     100160: Katana
     100162: Sheath
     100164: Armature
+    100166: Ninja_001
     400000: Camera
     400002: chest
     400004: elbow_l
@@ -171,10 +172,12 @@ ModelImporter:
     400160: Katana
     400162: Sheath
     400164: Armature
+    400166: Ninja_001
     4300000: Group1_001
     4300002: Sheath
     4300004: Katana
     4300006: Ninja
+    4300008: Ninja_001
     7400000: Default Take
     7400002: DAIR
     7400004: DIE
@@ -189,11 +192,16 @@ ModelImporter:
     7400022: UA
     7400024: UAIR
     7400026: Wallhang
+    7400028: Crouch
+    7400030: ShurikenThrow
+    7400032: WallHang
+    7400034: WallJump
     9500000: //RootNode
     13700000: Group1_001
     13700002: Katana
     13700004: Sheath
     13700006: Ninja
+    13700008: Ninja_001
   materials:
     importMaterials: 1
     materialName: 0

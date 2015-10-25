@@ -3,20 +3,20 @@
 <numtrack=1/>
 <vertex=4/>
 <frame=0.15>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=2,3/>
 <vtx1=0,2/>
 <vtx2=3,0/>
 <vtx3=4,1/>
-dmg0 2.0
-dmg1 2.0
-dmg2 2.0
-dmg3 2.0
-mag0 3.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+dmg0 4.0
+dmg1 4.0
+dmg2 4.0
+dmg3 4.0
+mag0 6.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -27,20 +27,20 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.8>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=2,3/>
 <vtx1=0,2/>
 <vtx2=3,0/>
 <vtx3=4,1/>
-dmg0 2.0
-dmg1 2.0
-dmg2 2.0
-dmg3 2.0
-mag0 3.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+dmg0 4.0
+dmg1 4.0
+dmg2 4.0
+dmg3 4.0
+mag0 6.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -56,8 +56,8 @@ wgt3 0.0
 <vacuum>
 <vertex=4/>
 <frame=0.15>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=3,5/>
 <vtx1=1,3/>
 <vtx2=3,1/>
@@ -67,21 +67,21 @@ dmg1 5.0
 dmg2 5.0
 dmg3 5.0
 mag0 6.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.8>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=3,5/>
 <vtx1=1,3/>
 <vtx2=3,1/>
@@ -98,30 +98,30 @@ dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 </SA>
 <DA>
 <numtrack=1/>
 <vertex=4/>
 <frame=0.15>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=-1,-3/>
 <vtx1=0,-4/>
 <vtx2=1,-3/>
 <vtx3=1,1/>
-dmg0 3.0
-dmg1 3.0
-dmg2 3.0
-dmg3 3.0
-mag0 2.0
-mag1 2.0
-mag2 2.0
-mag3 2.0
+dmg0 6.0
+dmg1 6.0
+dmg2 6.0
+dmg3 6.0
+mag0 4.0
+mag1 4.0
+mag2 4.0
+mag3 4.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -132,16 +132,16 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.8>
-<priority=3.0>
-<centre=3.0, 3.0>
+<priority=6.0>
+<centre=6.0, 6.0>
 <vtx0=-1,-3/>
 <vtx1=0,-4/>
 <vtx2=1,-3/>
 <vtx3=1,1/>
 dmg0 4.0
-dmg1 3.0
-dmg2 3.0
-dmg3 3.0
+dmg1 6.0
+dmg2 6.0
+dmg3 6.0
 mag0 4.0
 mag1 4.0
 mag2 4.0
@@ -160,20 +160,20 @@ wgt3 0.0
 <numtrack=1/>
 <vertex=4/>
 <frame=0.15>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=1,4/>
 <vtx1=0,5/>
 <vtx2=-1,4/>
 <vtx3=1,0/>
-dmg0 2.0
-dmg1 2.0
-dmg2 2.0
-dmg3 2.0
-mag0 3.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+dmg0 4.0
+dmg1 4.0
+dmg2 4.0
+dmg3 4.0
+mag0 6.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -184,20 +184,20 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.8>
-<priority=1.0>
-<centre=3.0, 3.0>
+<priority=2.0>
+<centre=6.0, 6.0>
 <vtx0=1,4/>
 <vtx1=0,5/>
 <vtx2=-1,4/>
 <vtx3=1,0/>
-dmg0 2.0
-dmg1 2.0
-dmg2 2.0
-dmg3 2.0
-mag0 3.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+dmg0 4.0
+dmg1 4.0
+dmg2 4.0
+dmg3 4.0
+mag0 6.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -220,12 +220,12 @@ wgt3 0.0
 <vtx3=7.951339,25.420748/>
 dmg0 6.0
 dmg1 6.0
-dmg2 3.0
-dmg3 3.0
+dmg2 6.0
+dmg3 6.0
 mag0 5.0
 mag1 5.0
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -244,12 +244,12 @@ wgt3 0.0
 <vtx3=7.8220525,18.54478/>
 dmg0 6.0
 dmg1 6.0
-dmg2 3.0
-dmg3 3.0
+dmg2 6.0
+dmg3 6.0
 mag0 5.0
 mag1 5.0
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -265,15 +265,15 @@ wgt3 0.0
 <vtx0=24.04797,13.588088/>
 <vtx1=23.660099,17.33828/>
 <vtx2=5.365541,17.38061/>
-<vtx3=5.3008924,13.049665/>
+<vtx3=5.3008924,16.049665/>
 dmg0 6.0
 dmg1 6.0
-dmg2 3.0
-dmg3 3.0
+dmg2 6.0
+dmg3 6.0
 mag0 5.0
 mag1 5.0
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -287,17 +287,17 @@ wgt3 0.0
 <priority=4.0>
 <centre=7.951345, 136.27007>
 <vtx0=20.427834,0.014503479/>
-<vtx1=21.00964,4.345446/>
+<vtx1=22.00964,4.345446/>
 <vtx2=7.498825,14.277924/>
 <vtx3=3.5554776,11.691907/>
 dmg0 6.0
 dmg1 6.0
-dmg2 3.0
-dmg3 3.0
+dmg2 6.0
+dmg3 6.0
 mag0 5.0
 mag1 5.0
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
@@ -330,10 +330,10 @@ dir0 0.22630692
 dir1 0.22630692
 dir2 0.22630692
 dir3 0.22630692
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.514>
 <priority=0.0>
@@ -354,19 +354,19 @@ dir0 0.22630692
 dir1 0.22630692
 dir2 0.22630692
 dir3 0.22630692
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 </LATK>
 <NAIR>
 <numtrack=1/>
 <vertex=4/>
 <frame=0.307>
-<priority=3.0>
+<priority=6.0>
 <centre=10.601791, 152.649>
-<vtx0=2.4135275,23.00122/>
+<vtx0=2.4135275,26.00122/>
 <vtx1=10.953715,24.487144/>
 <vtx2=13.42913,30.42684/>
 <vtx3=-0.18565592,28.32278/>
@@ -388,7 +388,7 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.325>
-<priority=3.0>
+<priority=6.0>
 <centre=11.894691, 148.88062>
 <vtx0=1.547137,22.87706/>
 <vtx1=25.316399,27.171959/>
@@ -412,7 +412,7 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.361>
-<priority=3.0>
+<priority=6.0>
 <centre=14.480497, 141.34383>
 <vtx0=0.92827976,24.238823/>
 <vtx1=23.207024,24.98112/>
@@ -436,7 +436,7 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.434>
-<priority=3.0>
+<priority=6.0>
 <centre=6.464508, 142.31442>
 <vtx0=-0.30942866,24.98112/>
 <vtx1=14.171754,26.836857/>
@@ -460,7 +460,7 @@ wgt2 0.0
 wgt3 0.0
 </frame>
 <frame=0.501>
-<priority=3.0>
+<priority=6.0>
 <centre=2.3918686, 142.37717>
 <vtx0=2.4135273,24.98112/>
 <vtx1=7.4881334,27.703314/>
@@ -491,25 +491,25 @@ wgt3 0.0
 <priority=4.0>
 <centre=-0.06464606, 167.58168>
 <vtx0=3.9433477,36.280148/>
-<vtx1=4.9130225,41.06501/>
+<vtx1=4.9130225,42.06501/>
 <vtx2=-4.719091,46.558792/>
 <vtx3=-6.335216,44.62028/>
-dmg0 3.0
-dmg1 3.0
+dmg0 6.0
+dmg1 6.0
 dmg2 5.0
 dmg3 6.0
-mag0 1.0
-mag1 1.0
-mag2 3.0
-mag3 3.0
+mag0 2.0
+mag1 2.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.129>
 <priority=4.0>
@@ -518,56 +518,56 @@ wgt3 1.0
 <vtx1=16.419844,31.73253/>
 <vtx2=15.967331,48.62814/>
 <vtx3=12.735076,48.36914/>
-dmg0 3.0
-dmg1 3.0
+dmg0 6.0
+dmg1 6.0
 dmg2 6.0
 dmg3 6.0
 mag0 1.5
 mag1 1.5
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.159>
 <priority=4.0>
 <centre=21.332869, 148.13129>
-<vtx0=11.015603,29.065079/>
+<vtx0=12.015603,29.065079/>
 <vtx1=11.13937,24.7328/>
 <vtx2=29.607439,36.21606/>
 <vtx3=26.85826,40.329/>
-dmg0 3.0
-dmg1 3.0
+dmg0 6.0
+dmg1 6.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 7.0
 mag3 7.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.177>
 <priority=4.0>
 <centre=15.579456, 150.10399>
 <vtx0=13.963333,26.560501/>
 <vtx1=13.640107,21.583384/>
-<vtx2=31.158916,21.088469/>
-<vtx3=31.029623,24.968157/>
-dmg0 3.0
-dmg1 3.0
+<vtx2=31.158916,22.088469/>
+<vtx3=32.029623,24.968157/>
+dmg0 6.0
+dmg1 6.0
 dmg2 7.0
 dmg3 7.0
 mag0 1.5
@@ -578,10 +578,10 @@ dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.21>
 <priority=4.0>
@@ -590,46 +590,46 @@ wgt3 1.0
 <vtx1=10.925018,18.997368/>
 <vtx2=22.30255,4.7339473/>
 <vtx3=23.854029,6.6083784/>
-dmg0 3.0
-dmg1 3.0
+dmg0 6.0
+dmg1 6.0
 dmg2 6.0
 dmg3 6.0
 mag0 1.5
 mag1 1.5
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.229>
 <priority=4.0>
-<centre=12.088627, 136.72266>
+<centre=14.088627, 136.72266>
 <vtx0=13.316879,20.419212/>
 <vtx1=9.567467,19.061453/>
 <vtx2=10.537142,1.178675/>
 <vtx3=13.491021,1.8351393/>
-dmg0 3.0
-dmg1 3.0
+dmg0 6.0
+dmg1 6.0
 dmg2 6.0
 dmg3 6.0
 mag0 1.5
 mag1 1.5
-mag2 3.0
-mag3 3.0
+mag2 6.0
+mag3 6.0
 dir0 0.0
 dir1 0.0
 dir2 0.0
 dir3 0.0
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 </FAIR>
 <BAIR>
@@ -654,10 +654,10 @@ dir0 -3.1415925
 dir1 -3.1415925
 dir2 -3.1415925
 dir3 -3.1415925
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 <frame=0.786>
 <priority=4.0>
@@ -666,22 +666,22 @@ wgt3 1.0
 <vtx1=-17.653625,22.964228/>
 <vtx2=-18.494007,19.732042/>
 <vtx3=1.6909735,15.5983/>
-dmg0 3.0
+dmg0 6.0
 dmg1 7.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
-mag2 3.0
-mag3 3.0
+mag0 6.0
+mag1 6.0
+mag2 6.0
+mag3 6.0
 dir0 -3.1415925
 dir1 -3.1415925
 dir2 -3.1415925
 dir3 -3.1415925
-wgt0 1.0
-wgt1 1.0
-wgt2 1.0
-wgt3 1.0
+wgt0 2.0
+wgt1 2.0
+wgt2 2.0
+wgt3 2.0
 </frame>
 </BAIR>
 <DAIR>
@@ -689,11 +689,11 @@ wgt3 1.0
 <vertex=4/>
 <frame=0.417>
 <priority=5.0>
-<centre=3.038316, 133.77255>
+<centre=6.038316, 133.77255>
 <vtx0=5.106956,6.1571226/>
 <vtx1=5.0423093,9.582893/>
 <vtx2=1.2282534,9.51881/>
-<vtx3=1.0989668,6.02629/>
+<vtx3=2.0989668,6.02629/>
 dmg0 5.0
 dmg1 5.0
 dmg2 5.0
@@ -717,7 +717,7 @@ wgt3 0.0
 <vtx0=5.0091977,-7.9464803/>
 <vtx1=4.944551,-4.520708/>
 <vtx2=1.1304951,-4.584792/>
-<vtx3=1.0012088,-8.077312/>
+<vtx3=2.0012088,-8.077312/>
 dmg0 5.0
 dmg1 5.0
 dmg2 5.0
@@ -745,13 +745,13 @@ wgt3 0.0
 <vtx0=-6.9170213,24.51557/>
 <vtx1=-5.688765,27.359255/>
 <vtx2=-18.294552,27.229753/>
-<vtx3=-21.041039,24.361652/>
+<vtx3=-22.041039,24.361652/>
 dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -774,8 +774,8 @@ dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -798,8 +798,8 @@ dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -822,8 +822,8 @@ dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -841,13 +841,13 @@ wgt3 0.0
 <vtx0=-0.7426237,28.569769/>
 <vtx1=3.21804,24.609972/>
 <vtx2=14.728723,42.3089/>
-<vtx3=12.129537,43.051193/>
+<vtx3=12.129537,46.051193/>
 dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -870,8 +870,8 @@ dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964
@@ -894,8 +894,8 @@ dmg0 4.0
 dmg1 4.0
 dmg2 7.0
 dmg3 7.0
-mag0 3.0
-mag1 3.0
+mag0 6.0
+mag1 6.0
 mag2 5.0
 mag3 5.0
 dir0 1.5707964

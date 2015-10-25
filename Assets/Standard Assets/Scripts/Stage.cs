@@ -105,10 +105,10 @@ public class Stage : MonoBehaviour {
 
         tBox = new TerrainBox();
         tBox.LoadCollisionBoxes(Terrain);
-        uBound.x = 35;
-        uBound.y = 35;
-        lBound.x = -35;
-        lBound.y = -35;
+        uBound.x = 350;
+        uBound.y = 350;
+        lBound.x = -350;
+        lBound.y = -350;
         return true;
     }
     public bool ProjectileDetect(Projectile p){
@@ -142,7 +142,7 @@ public class Stage : MonoBehaviour {
                     lastAng = prAngs [j];
                 }*/
                 if (pHitFlag){
-				p.Detonate ();
+				
                 return true;
             }
 			

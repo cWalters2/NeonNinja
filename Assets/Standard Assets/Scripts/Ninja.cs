@@ -8,6 +8,9 @@ public class Ninja : MonoBehaviour {
 
     public float wallJumpVelx;
     public float wallJumpVely;
+    public float startPosX;
+    public float startPosY;
+    public SPoint startPos;
 	//unity linker vars
 	public TextAsset SCRIPT_FILE;
 	public TextAsset STATS_FILE;
@@ -18,16 +21,18 @@ public class Ninja : MonoBehaviour {
     public const float DASH_TIME = 0.2f;
     //editable physics vars
     protected STimer projTmr;
+    public int starCount;
     protected STimer parryTmr;
     protected STimer parryTimeout;
     public Stats stats=new Stats();
 	protected int state;
 	public AudioClip[] audClips;
 	public ParticleSystem[] effects;
-	 
+    protected STimer starTmr;
+    public float starCooldown;
 	public AudioSource audMain;
 	public AudioClip[] audGen;
-	
+    protected Vector3 ls;
 	protected float tu_vRoThresh;//the threshold to roll instead of bounce on tumble landing
 	protected float tu_vReThresh;//threshold for maximum reflection vs shallow reflection
 	protected float tu_bncRat;//variable to determine bounce off tumble reflection
@@ -210,7 +215,11 @@ public class Ninja : MonoBehaviour {
 		return false;
 	}
 	public void Start(){
-        projTmr = new STimer(1.0f);
+        startPos = new SPoint(transform.position.x, transform.position.y);
+        transform.position = new Vector3(0, 0, 0);
+        
+        SetPos(startPos);
+        projTmr = new STimer(starCooldown);
         parryTimeout = new STimer(1.0f);
         parryTmr = new STimer(1.0f);
         hovTmr = new STimer(1.0f);
@@ -218,6 +227,7 @@ public class Ninja : MonoBehaviour {
         hovFin = new SPoint(0, 0);
         hovRec = 1;
         dashTmr = new STimer(DASH_TIME);
+        ls = transform.localScale;
         rollInvOn = new STimer ();
 		rollInvOff = new STimer ();
 		debugFadeTmr = new STimer (0.5f);
@@ -235,7 +245,7 @@ public class Ninja : MonoBehaviour {
 		hitHolder = null;
 		stunTimer = new STimer ();
         wallhang = false;
-		
+        starTmr = new STimer(starCooldown);
 		go=new GameObject();
 		for(int i=1;i<pCt+1;i++){
 			go =  GameObject.FindGameObjectWithTag("Player"+i);
@@ -380,7 +390,7 @@ public class Ninja : MonoBehaviour {
 		state = IDLE;
 		atkTmr.ResetTimer ();
 	}
-	protected bool ClashCheck(Ninja opp, SPoint[][] pBox, float[][] pAng){
+	public bool ClashCheck(Ninja opp, SPoint[][] pBox, float[][] pAng){
 		if (opp.atkTmr.IsReady ())
 			return false;
 		SPoint[][] oBox=null;
@@ -829,10 +839,10 @@ public class Ninja : MonoBehaviour {
 			else if(gCont.Held(DOWN))
 				StartAttack(DA, "DAIR");
 			else if((fHelper.IsFacingRight()&&gCont.Held(RIGHT))||(!fHelper.IsFacingRight()&&gCont.Held(LEFT)))
-				StartAttack(NA, "FAIR");
+				StartAttack(FAIR, "FAIR");
 			else if ((fHelper.IsFacingRight() && gCont.Held(LEFT)) || (!fHelper.IsFacingRight() && gCont.Held(RIGHT))) {
                 FaceRightIm(!fHelper.IsFacingRight());
-                StartAttack(NA, "FAIR");
+                StartAttack(FAIR, "FAIR");
                 
             }
             else
@@ -849,7 +859,7 @@ public class Ninja : MonoBehaviour {
                 state = WALK;
                 return false;
             }
-			StartAttack (DATK, "DATK");
+			StartAttack (SA, "SA");
         }else if (fHelper.airborne)
 					Aerial ();
 		else
@@ -873,6 +883,12 @@ public class Ninja : MonoBehaviour {
     public void Parry()    {
         if(parryTimeout.IsReady())
         parryTmr.SetTimer(0.08f);
+    }
+    public bool InParry() {
+        if (parryTmr.IsReady())
+            return false;
+        else
+            return true;
     }
 	
 	
@@ -973,7 +989,9 @@ public class Ninja : MonoBehaviour {
 		//if(debugModeOn)
 		//	FindConsole ();//always check in case console 
 		float timeLapsed = Time.deltaTime;
-
+       
+        int faceR = fHelper.IntFacingRight();
+                 transform.localScale = new Vector3(faceR*ls.x, ls.y, ls.z);
 		//double timeFr=timeLapsed*30;//simplified define for current development
 		//ignore for now cause this is kind of a hack...
 		if( StateChange())
@@ -1080,7 +1098,7 @@ public class Ninja : MonoBehaviour {
             }
         } else if (wallhang)
         {
-            stats.motion.vel.y = -stats.grav/2;
+            stats.motion.vel.y = -stats.grav;
             stats.motion.accl.y = 0;
             stats.motion.vel.x = 0;
             stats.motion.accl.x = 0;
@@ -1120,51 +1138,6 @@ public class Ninja : MonoBehaviour {
 		//	PlayEffect(EF_DCLOUD);
 
 			stats.flags.landed=false;
-		}
-	}
-	public void PivotEnd(){
-		//call this to cancel the animation or clear pivot vars
-		if(fHelper.IsFacingRight())
-			fHelper.Orient(0);
-		else
-			fHelper.Orient(180);
-		stats.pivot.slowPivot=false;
-		stats.flags.mBusy=false;
-		stats.flags.aBusy=false;
-		//Walk(0, gCont.lStick.x);
-	}
-	public void NinjaPivot(){
-		float pTimer = stats.pivot.pTmr.tmr;
-		float pTime = stats.pivot.fastTime;
-		if((!stats.flags.mBusy)&&(stats.jump.tmr.IsReady())){
-			if(stats.flags.running){
-				stats.pivot.slowPivot=true;
-				if( state== DASH)
-					state= WALK;
-				fHelper.Animate("Walk", true, 0);
-			}else if(state==DASH)
-				fHelper.Animate("Run", true, 0);
-
-			if(stats.pivot.pTmr.IsReady()){
-				if(!fHelper.IsFacingRight())
-					stats.pivot.pTmr.SetTimer(-pTime);
-			else
-				stats.pivot.pTmr.SetTimer(pTime);
-			}
-			else{ //sprite is already pivoting
-				if(!fHelper.IsFacingRight())
-					stats.pivot.pTmr.SetTimer( pTimer-pTime);
-			else
-				stats.pivot.pTmr.SetTimer(pTime + pTimer); 
-			}
-			stats.flags.aBusy=true;
-			
-			if(fHelper.IsFacingRight())
-				fHelper.FaceRight(false);
-			else
-				fHelper.FaceRight(true);
-
-			fHelper.animLoopStart=0;
 		}
 	}
 	
@@ -1235,19 +1208,22 @@ public class Ninja : MonoBehaviour {
         return true;
 	}
     public void FireProjectile() {
-        if (!projTmr.IsReady())
-            return;
-        //     Instantiate(Resources.Load("Star"), new Vector3(GetPos().x, GetPos().y, 0), Quaternion.identity);
-        GameObject gOb = Instantiate(Resources.Load("Star")) as GameObject;
-        Projectile p = gOb.GetComponent<Projectile>();
-        p.stage = GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>();
-        p.NinjaList = NinjaList;
+        if (projTmr.IsReady()&&(starCount>0))
+        {
+            starCount--;
+            projTmr.SetTimer(starCooldown);
+            //     Instantiate(Resources.Load("Star"), new Vector3(GetPos().x, GetPos().y, 0), Quaternion.identity);
+            GameObject gOb = Instantiate(Resources.Load("Star")) as GameObject;
+            Projectile p = gOb.GetComponent<Projectile>();
+            p.stage = GameObject.FindGameObjectWithTag("Stage").GetComponent<Stage>();
+            p.NinjaList = NinjaList;
+            p.thrower = this;
 
-
-        SPoint f = gCont.lStick;
-        if (f.x * f.y == 0)
-            f = new SPoint(fHelper.IntFacingRight(), 0);
-          p.Fire(GetPos(), f);
+            SPoint f = gCont.lStick;
+            if (f.x * f.y == 0)
+                f = new SPoint(fHelper.IntFacingRight(), 0);
+            p.Fire(GetPos(), f);
+        }
     }
 
 
@@ -1293,7 +1269,7 @@ public class Ninja : MonoBehaviour {
 						stats.flags.mBusy = false;
 		if ((stats.flags.aBusy)||(stats.flags.mBusy)||(fHelper.airborne)||(!atkTmr.IsReady()))
 						return;
-		PivotEnd ();
+ 
 		stats.flags.mBusy = true;
 		stats.flags.aBusy = true;
 
@@ -1345,10 +1321,10 @@ public class Ninja : MonoBehaviour {
 				if(gndSpeed==0){
 					if(((fHelper.IsFacingRight())&&(lStickX<-Ninja.WALK_THRESH))
 					   ||((!fHelper.IsFacingRight())&&(lStickX>Ninja.WALK_THRESH)) )
-						NinjaPivot();
+						FaceRightIm(!fHelper.IsFacingRight());
 				}
 				else if(((fHelper.IsFacingRight())&&(gndSpeed<0))||((!fHelper.IsFacingRight())&&(gndSpeed>0)))
-					NinjaPivot();
+					FaceRightIm(!fHelper.IsFacingRight());
 				else if(( state== WALK)&&(stats.jump.tmr.IsReady())&&(!fHelper.anim.GetCurrentAnimatorStateInfo(0).IsName("Walk"))){
 					fHelper.UnTranslate();
 
@@ -1433,10 +1409,10 @@ public class Ninja : MonoBehaviour {
 
 			if((Mathf.Abs(stats.walk.gndSpeed) < Mathf.Abs(gCont.lStick.x*stats.walk.maxSpeed))){
 				if(( state!= GUARD)&&( state!= DODGE)){		
-					if((gCont.lStick.x>WALK_THRESH)&&(stats.walk.gndSpeed<0)&&(stats.pivot.pTmr.IsReady())&&( (!stats.walk.shuffle.IsReady())||(Mathf.Abs(stats.walk.gndSpeed*10.1f)<WALK_THRESH)) ){
+					if((gCont.lStick.x>WALK_THRESH)&&(stats.walk.gndSpeed<0)&&( (!stats.walk.shuffle.IsReady())||(Mathf.Abs(stats.walk.gndSpeed*10.1f)<WALK_THRESH)) ){
 						stats.walk.gndSpeed=stats.walk.maxSpeed;
 						stats.walk.shuffle.SetTimer();
-					}else if((gCont.lStick.x<-WALK_THRESH)&&(stats.walk.gndSpeed>0)&&(stats.pivot.pTmr.IsReady())&&( (!stats.walk.shuffle.IsReady())||(Mathf.Abs(stats.walk.gndSpeed*10.1f)<WALK_THRESH))){
+					}else if((gCont.lStick.x<-WALK_THRESH)&&(stats.walk.gndSpeed>0)&&( (!stats.walk.shuffle.IsReady())||(Mathf.Abs(stats.walk.gndSpeed*10.1f)<WALK_THRESH))){
 						stats.walk.gndSpeed=-stats.walk.maxSpeed;
 						stats.walk.shuffle.SetTimer();
 					}else
@@ -1487,6 +1463,18 @@ public class Ninja : MonoBehaviour {
 			
 		}
 	}
+    public void AnimateWallJump()
+    {
+        if (fHelper.airborne)
+            fHelper.Animate("WallJump", true, stats.jump.tmr.GetLen());
+        fHelper.airborne = true;
+        state = FALL;
+        stats.flags.aBusy = false;//just to make sure
+
+        //if(animState->getAnimationName().compare("Jump")!=0){
+        //	Animate("Jump", true, stats.jump.tmr.GetLen());
+
+    }
 	public void AnimateJump(){
 		if(fHelper.airborne)
 			fHelper.Animate("Jump", true, stats.jump.tmr.GetLen());
@@ -1531,15 +1519,21 @@ public class Ninja : MonoBehaviour {
                 stats.motion.vel.x = -wallJumpVelx;
             else
                 stats.motion.vel.x = wallJumpVelx;
-      
+          //  FaceRightIm(!fHelper.IsFacingRight());
         stats.walk.slopeAng = new SPoint(1, 0);
-        AnimateJump();
+        AnimateWallJump();
     }
+
     public void WallHang(float ang)    {
+        if (!wallhang)
+        {
+           
+            fHelper.Animate("WallHang", false, 0);
+        }
         StartEffect(0);
-        if ((ang != 0) && (!fHelper.IsFacingRight()))
+        if ((ang == 0) && (!fHelper.IsFacingRight()))
             FaceRightIm(true);
-        else if ((ang == 0) && (fHelper.IsFacingRight()))
+        else if ((ang != 0) && (fHelper.IsFacingRight()))
             FaceRightIm(false);
 
         wallhang = true;
@@ -1550,7 +1544,8 @@ public class Ninja : MonoBehaviour {
 		float jVel = stats.jump.vel;
 		if(!gCont.Pressed(GameController.D)&&!gCont.Pressed(GameController.UP))//see if jump was cancelled here
 			jVel=jVel/2;
-		stats.motion.vel.y += jVel;
+        stats.motion.vel.y += jVel;
+        stats.motion.move.y += stats.size.y/1.8f;
 		if(!fHelper.airborne){
 			if((stats.walk.gndSpeed>WALK_THRESH)&&(gCont.lStick.x<0))
 				stats.motion.vel.x = gCont.lStick.x*stats.walk.maxSpeed/2;
@@ -1709,22 +1704,8 @@ public class Ninja : MonoBehaviour {
 		
 
 			//timer to track pivoting between left/right
-		if(stats.pivot.pTmr.tmr>0){
-			if(stats.pivot.pTmr.RunTimer(timeLapsed))
-				PivotEnd();
-			else if (stats.pivot.slowPivot)
-				fHelper.Pivot((0.25f*timeLapsed/stats.pivot.pTmr.GetLen())*180.0f);
-			else
-				fHelper.Pivot((timeLapsed/stats.pivot.pTmr.GetLen())*180.0f);
-			}
-		else if(stats.pivot.pTmr.tmr<0){
-			if(stats.pivot.pTmr.RunTimer(timeLapsed))
-					PivotEnd();
-			else if (stats.pivot.slowPivot)
-				fHelper.Pivot(-0.25f*(timeLapsed/stats.pivot.pTmr.GetLen())*180.0f);
-			else
-				fHelper.Pivot(-(timeLapsed/stats.pivot.pTmr.GetLen())*180.0f);
-			}
+		 
+	 
 			if(stats.walk.shuffle.RunTimer(timeLapsed))
 			stats.flags.running=true;
 			

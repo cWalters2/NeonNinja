@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour{
 	public ParticleSystem[] ps;
 	public bool active;
     public Stage stage;
+    public Ninja thrower;
 	public Ninja[] NinjaList;
     public float speed;
 
@@ -47,7 +48,7 @@ public class Projectile : MonoBehaviour{
 	public void Start(){
 				GameObject go;
 				int pCt = 0;
-       
+                active = true;
         pos = new SPoint();
         pos.x = transform.position.x;
         pos.y = transform.position.y;
@@ -74,41 +75,157 @@ public class Projectile : MonoBehaviour{
         }*/
     }
     public void Update(){
-        if (stage.ProjectileDetect(this))
-        {
-            effects[0].Play();
-            Destroy(effects[2]);
-            ttl.SetTimer(1.0f);
-        }
+        
             
         FrameUpdate (Time.deltaTime);
         
 	}
  
 	public virtual void Detonate(){
-		active = false;
-        effects[1].Play();
-        vel = new SPoint(0, 0);
-        //effects[2].Stop();
-        Destroy(effects[2]);
-        ttl.SetTimer(1.0f);
-        //for(int i=0;i<ps.Length;i++){
-        //ps[i].Stop ();
-        //ps[i].enableEmission=false;
-        //	}
+        if (active)
+        {
+            active = false;
+            effects[1].Play();
+            vel = new SPoint(0, 0);
+            effects[2].Stop();
+            Destroy(effects[2]);
+            ttl.SetTimer(5.0f);
+            //for(int i=0;i<ps.Length;i++){
+            //ps[i].Stop ();
+            //ps[i].enableEmission=false;
+            //	}
+        }
     }
-	public virtual void FrameUpdate(float timeLapsed){
+    public virtual void Stick()
+    {
+        if (active)
+        {
+            active = false;
+            //effects[1].Play();
+            vel = new SPoint(0, 0);
+            //effects[2].Stop();
+            //Destroy(effects[2]);
+            //ttl.SetTimer(5.0f);
+            //for(int i=0;i<ps.Length;i++){
+            //ps[i].Stop ();
+            //ps[i].enableEmission=false;
+            //	}
+        }
+    }
+    protected void Recover() {
+        thrower.starCount++;
+        Destroy(gameObject);
+    }
+    public virtual void FrameUpdate(float timeLapsed){
+        if (stage.ProjectileDetect(this))
+        {
+            Stick();
+            // effects[0].Play();
+            // Destroy(effects[2]);
+            //ttl.SetTimer(1.0f);
+        }
+        if((!active)&&(ttl.IsReady()))
+            if(AttackDetect(thrower))
+                Recover();
+
         transform.Translate(new Vector3(-vel.x, vel.y,0));
         pos.x -= vel.x;
         pos.y += vel.y;
-		for (int i=0; i<NinjaList.Length; i++) {
-			AttackDetect (NinjaList[i]);
-		}
+        
+            for (int i = 0; i < NinjaList.Length; i++)
+            {
+            if (ClashCheck(NinjaList[i])){
+                effects[3].Play();
+                SPoint nDir = new SPoint(pos.x - NinjaList[i].GetPos().x, pos.y - NinjaList[i].GetPos().y).GetNormal();
+                vel.x = nDir.x * speed;
+                vel.y = nDir.y * speed;
+                thrower = NinjaList[i];
+                NinjaList = NinjaList[i].NinjaList;
+                return;
+            }
+                
+                if((active)&&(AttackDetect(NinjaList[i]))) {
+                    
+                    active = false;
+                if (NinjaList[i].InParry()){
+                    NinjaList[i].starCount++;
+                    Destroy(gameObject);
+                }else{
+                        NinjaList[i].GetHit(hitdata);
+                        Detonate();
+                    }
+
+                }
+            }
+        
         if (ttl.RunTimer(timeLapsed))
+        {
+            
             Destroy(gameObject);
+            Destroy(this);
+        }
 
         
 	}
+    public bool ClashCheck(Ninja opp)
+    {
+        SPoint[] pBox = new SPoint[8];
+       
+      
+        int hbLen = 4;
+        float[] pAng = { 0, Mathf.PI / 2, Mathf.PI, -Mathf.PI / 2 };
+      
+        for (int i = 0; i < 8; i++)
+            pBox[i] = new SPoint(v[i].x + pos.x, v[i].y + pos.y);
+        float atkLen = GetVNum();
+
+        if (opp.atkTmr.IsReady())
+            return false;
+        SPoint[][] oBox = null;
+        float[][] oAngs = null;
+
+        oBox = opp.GetClashBox(oBox);
+        int pLen = pBox.Length;
+        //abox = obox
+        //plBox = pBox;
+        if (oBox == null)
+            return false;
+        oAngs = opp.GetClashAngs(oAngs);
+        int numPoly = oBox.Length;
+        bool hitCheck = false;
+        bool hitflag = false;
+       
+        int pInd = 0;
+
+        for (int oInd = 0; oInd < numPoly; oInd++)
+        {//iterate per poly
+            hitflag = true;
+            atkLen = oBox[oInd].Length;
+            for (int j = 0; j < atkLen; j++)
+                if (!CheckAxisO(oBox[oInd][j], oAngs[oInd][j], pBox, oBox[oInd], pLen, oBox[oInd].Length)) //no axis intersection
+                    hitflag = false;
+
+            if (hitflag)//test on the axis of the player hit box to confirm
+                for (int j = 0; j < pLen; j++)
+                    if (!CheckAxisO(pBox[j], ang[j], pBox, oBox[oInd], pLen, oBox[oInd].Length)) //no axis intersection
+                        hitflag = false;
+            if (hitflag)
+                hitCheck = true;
+
+        }
+        hitflag = hitCheck;
+
+        if (hitCheck)
+        {
+
+
+           
+                return true;
+            
+        }
+        else
+            return false;
+    }
     public bool CheckAxis(SPoint origin, float dir, SPoint pCen, SPoint[] aBox, int aNum)
     {
         // helper function for the Separating Axis Theorem that takes an axis defined by origin and dir 
@@ -219,7 +336,7 @@ public class Projectile : MonoBehaviour{
             isHit = false;
         return isHit;
     }
-    public void AttackDetect(Ninja plr){
+    public bool AttackDetect(Ninja plr){
 				//projectile checks
 		SPoint[] pHdr = new SPoint[8];
 		SPoint[] plBox;
@@ -235,14 +352,13 @@ public class Projectile : MonoBehaviour{
 								hitflag = false;
 	
 				
-				if (hitflag) {
-						active = false;
-						plr.GetHit (hitdata);
-						Detonate ();
+				if((hitflag)) {
+						
+                        return true;
 				}
-	
-		
-				
+
+
+                return false;
 		}
 	public void SetAtkData(float dm, float di, float ma){
 		hitdata.dir=di;

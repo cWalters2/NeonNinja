@@ -56,7 +56,7 @@ public class MenuHandler : MonoBehaviour {
 			DontDestroyOnLoad(pl1);
 			DontDestroyOnLoad(pl2);
 			DontDestroyOnLoad(stage);
-			Stage stScr = stage.GetComponent ("stRuins") as stRuins;
+			//Stage stScr = stage.GetComponent ("stRuins") as stRuins;
 
 			
 			

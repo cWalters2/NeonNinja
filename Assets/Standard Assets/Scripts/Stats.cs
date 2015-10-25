@@ -60,7 +60,7 @@ public class Stats {
 	
 	public Jump jump;
 	
-	public Pivot pivot;
+	//public Pivot pivot;
 
 	public Flags flags;
 	public SPoint size;
@@ -82,9 +82,7 @@ public class Stats {
 		walk.shuffle=new STimer(0.5f);
 		walk.slopeAng=new SPoint();
 		
-		pivot.pTmr = new STimer (0.125f);
-		pivot.fastTime=0.125f;
-		pivot.slowTime = 0.4f;
+		
 		jump.tmr = new STimer (0.1f);
 		
 		jump.tmr = new STimer (0.12f);
@@ -125,9 +123,7 @@ public class Stats {
 					}else if((line.Length>15)&&(line.Substring(0,15).CompareTo("walk.shuffletime=") == 0)){ 
 						splitInd = line.IndexOf("=")+1;
 						walk.shuffle= new STimer(float.Parse(line.Substring(splitInd, line.Length-15) ) );//tmr
-					}else if((line.Length>12)&&(line.Substring(0,12).CompareTo("pivot.time=") == 0)){
-						splitInd = line.IndexOf("=")+1;
-						pivot.pTmr=new STimer(float.Parse(line.Substring(splitInd, line.Length-12) ) ); //tmr
+					
 					}else if((line.Length>11)&&(line.Substring(0,11).CompareTo("jump.delay=") == 0)){
 						splitInd = line.IndexOf("=")+1;
 						jump.tmr=new STimer(float.Parse(line.Substring(splitInd, line.Length-11) ) );//tmr
