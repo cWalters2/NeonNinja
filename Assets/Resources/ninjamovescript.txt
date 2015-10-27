@@ -3,11 +3,11 @@ time 0.3 burst 2
 time 0.7 burst 2
 </ATTACK>
 <ATTACK:FAIR>
-time 0.01 airburst 0.5 0
-time 0.2 airhover 0.5 0
+time 0.2 airhover 1 0
+time 0.01 airburst 1 0
 </ATTACK>
 <ATTACK:UAIR>
-time 0.01 airburst 0 1
+time 0.01 airburst 0 2
 </ATTACK>
 <ATTACK:DAIR>
 time 0.01 airbrake 0 0

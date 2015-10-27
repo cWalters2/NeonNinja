@@ -11,6 +11,7 @@ public class Ninja : MonoBehaviour {
     public float startPosX;
     public float startPosY;
     public SPoint startPos;
+    public Transform spr;
 	//unity linker vars
 	public TextAsset SCRIPT_FILE;
 	public TextAsset STATS_FILE;
@@ -216,7 +217,7 @@ public class Ninja : MonoBehaviour {
 	}
 	public void Start(){
         startPos = new SPoint(transform.position.x, transform.position.y);
-        transform.position = new Vector3(0, 0, 0);
+        //transform.position = new Vector3(0, 0, 0);
         
         SetPos(startPos);
         projTmr = new STimer(starCooldown);
@@ -338,7 +339,10 @@ public class Ninja : MonoBehaviour {
 	protected  void Update (){
 		gCont.FrameUpdate (stats.id.num);
 		FrameUpdate ();
-	}
+        transform.position = new Vector3(GetPos().x, GetPos().y);
+        if (debugHitbox != null)
+            debugHitbox.transform.position = new Vector3(GetPos().x, GetPos().y);
+        }
 	public void Idle(){
 
         if ((stats.motion.vel.y < 0.01f)&& (fHelper.actionTmr.IsReady())&&(!fHelper.airborne)&&(fHelper.actionTmr.IsReady())){
@@ -1645,7 +1649,7 @@ public class Ninja : MonoBehaviour {
 			stats.motion.move.y = hit.cenPt.y;//-stats.motion.pos.y;		
 		}
         PlayEffect(1);
-        SetPos(new SPoint(0, 8));
+        RePosition(new SPoint(startPos.x, startPos.y));
         //TakeHit (hit);
 	}
 	public void RunTimers(float timeLapsed)
@@ -1963,8 +1967,11 @@ public class Ninja : MonoBehaviour {
 	}
 
 	public virtual void SetPos(SPoint p){
+        if (!fHelper.IsFacingRight())
+            FaceRightIm(true);
+        //Move(new SPoint(p.x-GetPos().x, p.y-GetPos().y));
 		stats.motion.pos = new SPoint (p.x, p.y);
-		fHelper.TR.position=new Vector3(p.x, p.y, 0);
+		gameObject.transform.position=new Vector3(p.x, p.y, 0);
 		if (debugHitbox != null) {
 						
 						debugHitbox.transform.position = new Vector3 (p.x, p.y, 0);
