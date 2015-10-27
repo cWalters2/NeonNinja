@@ -88,6 +88,7 @@
     <None Include="Assets\Refraction.shader" />
     <None Include="Assets\Resources\neonstage 1.txt" />
     <None Include="Assets\Resources\neonstage.txt" />
+    <None Include="Assets\Resources\ninjamovescript.txt" />
     <None Include="Assets\Resources\particles\Distort3.shader" />
     <None Include="Assets\Resources\particles\Distort4.shader" />
     <None Include="Assets\Resources\particles\Refraction.shader" />

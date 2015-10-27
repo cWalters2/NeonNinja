@@ -10,7 +10,7 @@ public class Stage : MonoBehaviour {
 	public int numPlr;
 	protected SPoint lBound=new SPoint();
 	protected SPoint uBound=new SPoint();
-	public SPoint[] startPos = new SPoint[2];
+	//public SPoint[] startPos = new SPoint[2];
 	protected TerrainBox tBox;
 	const float EPS = 0.00001f;
 	const int STAGE_LIMIT = 1000;
@@ -24,15 +24,15 @@ public class Stage : MonoBehaviour {
 	bool gameWon=false;
 	// Use this for initialization
 	protected void Start () {
-		for (int i=0; i<numPlr; i++)
-			if (player [i] == null)
-				SetPlStart (player [i]);
-        startPos[0] = new SPoint(-2 , 5 );
-        startPos[1] = new SPoint(2 , 5 );
+		//for (int i=0; i<numPlr; i++)
+		//	if (player [i] == null)
+		//		SetPlStart (player [i]);
+        //startPos[0] = new SPoint(0 , 0 );
+        //startPos[1] = new SPoint(0 , 0 );
         LoadStage();
         numPlr = 2;
         
-        matchModeOn = GameObject.FindGameObjectWithTag("MatchHelper").GetComponent<MatchHelper>().isMatch;
+        //matchModeOn = GameObject.FindGameObjectWithTag("MatchHelper").GetComponent<MatchHelper>().isMatch;
     }
 	
 	// Update is called once per frame
@@ -304,7 +304,7 @@ public class Stage : MonoBehaviour {
 		
 		if((plr.GetPos().x > uBound.x)||(plr.GetPos().y > uBound.y)||(plr.GetPos().x < lBound.x)||(plr.GetPos().y < lBound.y)){
 			if((plr.stats.stocks>0)||(!matchModeOn)){
-			SetPlStart(plr);
+			//SetPlStart(plr);
 			plr.stats.stocks--;
 			plr.stats.motion.vel = new SPoint(0,0);
 			plr.stats.damage=0;}
@@ -604,15 +604,7 @@ public class Stage : MonoBehaviour {
 		}
 		return false;
 	}
-	void SetPlStart(Ninja plr){
-		plr.stats.motion.lastPos.x = startPos[plr.stats.id.num-1].x;
-		plr.stats.motion.lastPos.y = startPos[plr.stats.id.num-1].y;
-		plr.stats.motion.pos.x = startPos[plr.stats.id.num-1].x;
-		plr.stats.motion.pos.y = startPos[plr.stats.id.num-1].y;
-		//plr.stats.damage = 150.2f;
-		plr.SetPos(startPos[plr.stats.id.num-1]);
-		plr.Fall();
-	}
+	
 	void FillCollisionBox(SPoint[] plBox, SPoint pos, float h, float w){
 		plBox[0].x = pos.x - w/2;
 		plBox[0].y = pos.y;

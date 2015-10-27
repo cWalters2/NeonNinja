@@ -306,7 +306,7 @@ public class Ninja : MonoBehaviour {
     
         stats.LoadStats(STATS_FILE);
         attackBox.LoadFromScript(SCRIPT_FILE, 1, stats.size.y);
-        LoadMoveScript(MOVE_FILE);
+        LoadMoveScript(MOVESCRIPT);
 
         stats.id.num = plNum;//todo not hard code
        
@@ -340,8 +340,8 @@ public class Ninja : MonoBehaviour {
 		FrameUpdate ();
 	}
 	public void Idle(){
-		
-		if((fHelper.actionTmr.IsReady())&&(!fHelper.airborne)&&(fHelper.actionTmr.IsReady())){
+
+        if ((stats.motion.vel.y < 0.01f)&& (fHelper.actionTmr.IsReady())&&(!fHelper.airborne)&&(fHelper.actionTmr.IsReady())){
 			float lStart=stats.walk.loopStart;
 			if((!fHelper.anim.GetCurrentAnimatorStateInfo(0).IsName("GetUp"))&& 
 			   (!stats.flags.mBusy)&&(!stats.flags.aBusy)&&(Mathf.Abs(stats.walk.gndSpeed)<LOWTHRESH)){
@@ -835,9 +835,9 @@ public class Ninja : MonoBehaviour {
 			int atk = 0;
 			string name = "";
 			if(gCont.Held(UP))
-				StartAttack(UA, "UAIR");
+				StartAttack(UAIR, "UAIR");
 			else if(gCont.Held(DOWN))
-				StartAttack(DA, "DAIR");
+				StartAttack(DAIR, "DAIR");
 			else if((fHelper.IsFacingRight()&&gCont.Held(RIGHT))||(!fHelper.IsFacingRight()&&gCont.Held(LEFT)))
 				StartAttack(FAIR, "FAIR");
 			else if ((fHelper.IsFacingRight() && gCont.Held(LEFT)) || (!fHelper.IsFacingRight() && gCont.Held(RIGHT))) {
@@ -872,8 +872,6 @@ public class Ninja : MonoBehaviour {
 		else if ( state < 3) {//able to attack while idle,running or crouching
 				if (gCont.lStick.y > VERT_THRESH)
 						StartAttack (UA, "UA");
-				else if (gCont.Held (DOWN))
-						StartAttack (DA, "DA");
 				else if ((gCont.Held (LEFT)) || (gCont.Held (RIGHT)))
 						StartAttack (NA, "NA");
 				else
@@ -1476,7 +1474,7 @@ public class Ninja : MonoBehaviour {
 
     }
 	public void AnimateJump(){
-		if(fHelper.airborne)
+		if(!fHelper.airborne)
 			fHelper.Animate("Jump", true, stats.jump.tmr.GetLen());
 		fHelper.airborne=true;
 		 state= FALL;
@@ -2142,6 +2140,8 @@ public class Ninja : MonoBehaviour {
         //	cons.name="TumbleLand";
         //	ledgeJumpFlag = false;	
         //}
+        if (stats.motion.vel.y > 0)
+            return;
         wallhang = false;
         StopEffect(0);
 		if(angle > Mathf.PI/2.0)

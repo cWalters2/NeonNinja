@@ -136,7 +136,7 @@ public class Projectile : MonoBehaviour{
             {
             if (ClashCheck(NinjaList[i])){
                 effects[3].Play();
-                SPoint nDir = new SPoint(pos.x - NinjaList[i].GetPos().x, pos.y - NinjaList[i].GetPos().y).GetNormal();
+                SPoint nDir = new SPoint(pos.x - thrower.GetPos().x, pos.y - thrower.GetPos().y).GetNormal();
                 vel.x = nDir.x * speed;
                 vel.y = nDir.y * speed;
                 thrower = NinjaList[i];
@@ -146,7 +146,7 @@ public class Projectile : MonoBehaviour{
                 
                 if((active)&&(AttackDetect(NinjaList[i]))) {
                     
-                    active = false;
+                    //active = false;
                 if (NinjaList[i].InParry()){
                     NinjaList[i].starCount++;
                     Destroy(gameObject);
